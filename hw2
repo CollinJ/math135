@@ -2,7 +2,7 @@
 
 \usepackage[margin=1in]{geometry}
 
-\usepackage{mathrsfs, graphicx}
+\usepackage{amssymb, mathrsfs, graphicx, }
 
 \name{Collin Johnston}
 \class{Math 135}
@@ -37,72 +37,102 @@ Show that $ A \times \bigcup \mathscr B = \bigcup\{A\times X \;|\; X \in \mathsc
 \end{problem}
 
 \begin{solution}
-  
-\end{problem}
-
-\begin{solution}[(\textit{a})]
-The right half-plane corresponds to the right open hemisphere $\{ (x_1, x_2, x_3) \in \mathbb{R}^3 \mid x_1 > 0, x_1^2 + x_2^2 + x_3^2 = 1 \}$.
+  ($\rightarrow$) We want to show that any $t = \langle x,y \rangle \in A \times \bigcup \mathscr B$ that $t \in \bigcup \{A \times X\;|\;X \in \mathscr B \}$ 
+  \begin{align*}
+    \langle x,y \rangle \in A \times \bigcup \mathscr B &\implies x \in A \;\&\; y \in \bigcup \mathscr B \\
+    y \in \bigcup \mathscr B &\implies \exists N \in \mathscr B \text{ s.t. }(t\in N) \\
+    \text{So } \exists N \in \mathscr B &\text{ s.t. } (t \in A \times N) \\
+  \end{align*}
+  Taking $X=N$, $\exists  M \in \{A \times X\;|\;X \in \mathscr B \}$ s.t. $t \in M$ which means that $t \in \bigcup \{A \times X\;|\;X \in \mathscr B \}$ \\
+  ($\leftarrow$) In this direction we start with $t \in \bigcup \{A\times X \;|\; X \in \mathscr B\}$ and show that $t\in A\times \bigcup \mathscr B$
+  \begin{align*}
+    t\in \bigcup \{ A\times X \;|\; X \in \mathscr B\} &\implies \exists N \in \{ A\times X \;|\; X \in \mathscr B\} \text{ s.t. } t\in N \\
+    \exists X \in \mathscr B &\text{ s.t. } t \in A\times X \\
+    t \in A \times X &\implies x\in A \;\&\; y\in X \\
+    y \in X &\implies y\in \bigcup \mathscr B \\
+  \end{align*}
+  Therefore $\langle x,y \rangle \in A\times \bigcup \mathscr B$.
 \end{solution}
 
-\begin{solution}[(\textit{d})]
-Since $|z| > 3$, $|z|^2 + 1 > 10$, so
-\[
-  x_3 = \frac{|z|^2 - 1}{|z|^2 + 1} 
-  = 1 - \frac{2}{|z|^2 + 1}
-  > 1 - \frac{2}{10} = \frac{4}{5}.
-\]
-Thus, the set $\{ z \mid |z| > 3 \}$ corresponds to the dome of the Riemann sphere above the plane $x_3 = 4/5$. Hand sketches of these projections are shown below:
 
-\noindent%
-\begin{center}
-\begin{tabular}{cc}
-  (\textit{a}) & (\textit{d}) \\
-  \framebox[1.75in]{\rule{0pt}{1.5in}} & \framebox[1.75in]{\rule{0pt}{1.5in}}  \\
-  \multicolumn{2}{c}{(to be drawn in later)} \\
-\end{tabular}
-\end{center}
-\end{solution}
-
-\begin{problem}[DF 1.1.25]
-Prove that if $x^2 = 1$ for all $x \in G$ then $G$ is abelian.
+\begin{problem}[3.8]
+  Show that for any set $\mathscr A$:
+  \begin{align*}
+    \text{dom}\;\bigcup \mathscr A &= \bigcup\{\text{dom }R\;|\; R\in \mathscr A\}, \\
+    \text{ran}\;\bigcup \mathscr A &= \bigcup\{\text{ran }R\;|\; R\in \mathscr A\}, \\
+  \end{align*}
 \end{problem}
-
 \begin{solution}
-Suppose $x^2 = 1$ for all $x \in G$. Then $x = x^2 x^{-1} = 1 x^{-1} = x^{-1}$ for all $x \in G$. For two arbitrary elements $a$ and $b$ of $G$,
-\[
-  ab = (ab)^{-1} = b^{-1} a^{-1} = ba,
-\]
-so $a$ and $b$ commute. Since $a$ and $b$ are arbitrary, $ab = ba$ for all $a$ and $b \in G$, and $G$ is abelian.
+  Let $\langle x,y \rangle$ be in $\bigcup \mathscr A$ so that $x$ is in dom $\bigcup \mathscr A$. Then $\exists N \in \mathscr A$ such that $\langle x,y \rangle \in N$. Taking this $N=R$, $x\in $ dom $R$ so $R \in \bigcup \{\text{dom } R \;|\; R \in \mathscr A\}$. Conversely if $x$ starts in $\bigcup \{ \text{dom }R \;|\; R \in \mathscr A \}$, then there is some $R$ such that $x\in $dom $R$ or $\langle x,y \rangle \in R \in \mathscr A$. Therefore $\langle x,y \rangle \in \bigcup \mathscr A$, and $x$ is in it's domain. \\
+  For the second part one can make an identical argument using $y$ being in the ran $\langle x,y \rangle$.
 \end{solution}
 
-%%% sometimes natural pagebreaks separate problem statements from solutions, 
-%%% and we have to change them manually.
+\begin{problem}[3.11]
+  Prove the following: Assume that $F$ and $G$ are functions, dom $F$ = dom $G$, and $F(x) = G(x)$ for all $x$ in the common domain. Then $F = G$.
+\end{problem}
+\begin{solution}
+Let $\langle x,y \rangle \in F$. Then becuase the domains are equal, there exists an $\langle x,t \rangle$ in G. Since $F(x) = G(x)$, there exists a $t$ in $G(x)$ such that $y=t$. Therefore $\langle x,y \rangle \in G$ and $F \subseteq G$. By making the identical argument swapping $F$ for $G$, one can see that $G \subseteq F$ so $F=G$.
+\end{solution}
+\begin{problem}[3.15]
+Let $\mathscr A$ be a set of functions such that for any $f$ and $g$ in $\mathscr A$, either $f\subseteq g$ or $g \subseteq f$. Show that $\bigcup \mathscr A$ is a function.
+\end{problem}
+\begin{solution}
+  To show that $\bigcup \mathscr A$ is a function it must only contain 2-pairs and $(\langle x,y \rangle \in \bigcup \mathscr A)\; \& \;(\langle x,t \rangle \in \bigcup \mathscr A) \implies y=t$. 
+  If $\langle x,y \rangle \:\&\: \langle x,t \rangle \in \bigcup \mathscr A$ then let $\langle x,y \rangle \in f \in \mathscr A$ and $\langle x,t \rangle \in g \in \mathscr A$. If $f=g$ then since $f$ is a function $y=t$. If $f\not=g$ then since $f \subseteq g$ or $g \subseteq f$, either $\langle x,y \rangle \in g$ or $\langle x,t \rangle \in f$. In either case, becuase $f$ and $g$ are function, one of them will have both $\langle x,y \rangle \:\&\: \langle x,t \rangle $ in them which means $x=t$.
+\end{solution}
 \newpage
-
-\begin{problem}[Logan 1.8.6]
-This exercise illustrates an important numerical procedure for solving Laplace's equation on a reactangle. Consider Laplace's equation on the rectangle $D: 0 < x < 4, 0 < y < 3$ with boundary conditions given on the bottom and top by $u(x,0) = 0$, $u(x,3) = 0$ for $0 \leq x \leq 4$ and on the sides by $u(0,y) = 2y(3 - y)$, $u(4,y) = 0$ for $0 \leq y \leq 3$. Apply the average value property~(1.45) with $h = 1$ at each of the six lattice points $(1,1), (1,2), (2,1), (2,2), (3,1), (3,2)$ inside $D$ to obtain a system of six equations for the six unknown temperatures on these lattice points. Solve the system to approximate the steady temperature distribution and plot the approximate surface using a software package. 
+\begin{problem}[3.19]
+  Let 
+  \[
+    A = \{\langle \varnothing. \{\varnothing, \{ \varnothing\}\}\rangle,\langle \{\varnothing\},\varnothing\rangle\}.
+  \]
+  Evaluate each of the following: $A(\varnothing)$, $A[ \varnothing ]$, $A[ \{\varnothing\} ]$, $A[ \{\varnothing, \{\varnothing\}\} ]$, $A^{-1}$, $A\circ A$, $A \upharpoonright \varnothing$, $A \upharpoonright \{\varnothing\}$, $A \upharpoonright \{\varnothing,\{\varnothing\}\}$, $\bigcup\bigcup A$.
 \end{problem}
-
 \begin{solution}
-Applying this average value property with $h = 1$ yields the following linear system:
-\begin{align*}
-  u(1,1) &= \frac{1}{4} (u(1,0) + u(1,2) + u(0,1) + u(2,1)) = \frac{1}{4} (4 + u(1,2) + u(2,1)), \\
-  u(1,2) &= \frac{1}{4} (u(1,1) + u(1,3) + u(0,2) + u(2,2)) = \frac{1}{4} (4 + u(1,1) + u(2,2)), \\
-  u(2,1) &= \frac{1}{4} (u(2,0) + u(2,2) + u(1,1) + u(3,1)) = \frac{1}{4} (u(1,1) + u(2,2) + u(3,1)), \\
-  u(2,2) &= \frac{1}{4} (u(2,1) + u(2,3) + u(1,2) + u(3,2)) = \frac{1}{4} (u(2,1) + u(2,3) + u(3,2)), \\
-  u(3,1) &= \frac{1}{4} (u(3,0) + u(3,2) + u(2,1) + u(4,1)) = \frac{1}{4} (u(3,2) + u(2,1)), \\
-  u(3,2) &= \frac{1}{4} (u(3,1) + u(3,3) + u(2,2) + u(4,2)) = \frac{1}{4} (u(3,1) + u(2,2)),
-\end{align*}
-which we solve in \emph{Mathematica} 5.0 to obtain
-\[
- \renewcommand{\arraystretch}{1.25}
-  \begin{pmatrix} u(1,1) \\ u(1,2) \\ u(2,1) \\ u(2,2) \\ u(3,1) \\ u(3,2) \end{pmatrix}
-  = \begin{pmatrix} \frac{32}{21} \\ \frac{32}{21} \\ \frac{4}{7} \\ \frac{4}{7} \\ \frac{4}{21} \\ \frac{4}{21} \end{pmatrix}.
-\]
-Plotting these lattice point values yields the following approximate temperature surface:
-\begin{center}
-  \includegraphics[scale=.8]{logan-1-8-6.pdf}
-\end{center}
+  \begin{align*}
+    A(\varnothing) &= \{\varnothing,\{\varnothing\}\} \\
+    A[ \varnothing ] &= \varnothing \\
+    A[ \{\varnothing\}] &= \{\varnothing,\{\varnothing\}\} \\
+    A[ \{\varnothing, \{\varnothing\}\}] &= \{\varnothing, \{\varnothing,\{\varnothing\}\}\} \\
+    A^{-1} &= \{\langle\{\varnothing,\{\varnothing\}\},\varnothing\rangle,\:\langle\varnothing, \{\varnothing\}\rangle\} \\
+    A\circ A &= \{\langle \{\varnothing\},\{\varnothing,\{\varnothing\}\}\rangle\} \\
+    A \upharpoonright \varnothing &= \varnothing \\
+    A \upharpoonright \{\varnothing\} &= \{\langle \varnothing,\{\varnothing,\{\varnothing\}\}\rangle\} \\
+    A \upharpoonright \{\varnothing,\{\varnothing\}\} &= \varnothing \\    \bigcup \bigcup A &= \{\varnothing,\{\varnothing\},\{\varnothing,\{\varnothing\}\}\}
+  \end{align*}
 \end{solution}
 
+\begin{problem}[3.25]
+  \begin{enumerate}
+    \item Assume that $G$ is a one-to-one function. Show that $G \circ G^{-1}$ is $I_{\text{ran }G}$, the identity function on ran $G$.
+    \item Show that the result of part (a) holds for any function $G$, not necessarily one-to-one.
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  To show that they are equal, assume $\langle x,y \rangle \in G \circ G^{-1}$. This means that: $\exists t (\langle x,t \rangle \in G^{-1} \:\&\: \langle t,y \rangle \in G)$. Since $\langle x,t\rangle \in G^{-1}$, it must be that $\langle t,x\rangle \in G$. But since both $\langle t,x \rangle$ and $\langle t,y\rangle$ are in $G$, a function, $x=y$. Therefore the only elements in $G\circ G^{-1}$ are of the form $\langle x,x\rangle$ where $x$ is in ran $G$ which is exatly $I_{\text{ran }G}$
+\end{solution}
+\begin{problem}[3.30]
+  Assume that $F:\mathscr P A \to \mathscr P A$ and that $F$ has the monotonicity property:
+  \[
+    X\subseteq Y \subseteq A \quad \implies \quad F(X)\subseteq F(Y).
+  \]
+  Define
+  \[
+    B = \bigcap\{X\subseteq A \;|\; F(X)\subseteq X\} \quad \text{ and } \quad C = \bigcup\{X\subseteq A \;|\; X \subseteq F(X)\}.
+  \]
+  \begin{enumerate}
+    \item  Show that $F(B) = B$ and $F(C)=C$.
+    \item  Show that if $F(X)=X$, then $B\subseteq X\subseteq C$.
+    
+  \end{enumerate}
+
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item Pick any $t\in F(B)$. Then its preimage $x$ is in $B$. Since $x\in B$, every set that contains $x$ is a superset of itself under F. Therefore, $B$ is a superset of $F(B)$ and $t\in B$. On the other hand assume $t\in B$ but $t\notin F(B)$. This is a contradiction becuase $B$ must be a super set of $F(B)$. Therefore $F(B)=B)$. \\
+      For set $C$, assume $t\in C$, then $\exists X(t\in X)$ and $X \subseteq F(X)$, which implies $t\in F(X)$ and $t\in F(C)$. Assuming $t\in F(C)$, then since $F(C) \subseteq C$, $F(F(C)) \subseteq F(C)$ so $F(C)$ belongs to the union and anything in $C$ is in $F(C)$.
+    \item If $F(X) = X$ then $F(X) \subseteq X$ so $B$ includes it in it's dijoint which means $B\subseteq X$. On the other hand, $X \subseteq F(X)$ and since $C$ is the union of $X$ and other sets, $X \subseteq C$.
+
+  \end{enumerate}
+\end{solution}
 \end{document}

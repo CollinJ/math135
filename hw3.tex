@@ -1,0 +1,116 @@
+\documentclass[12pt,letterpaper,boxed]{hmcpset}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amssymb, mathrsfs, graphicx, }
+\newcommand{\texttiny}[1]{\textnormal{\tiny \textsc{#1}}}
+\newcommand{\pair}[2]{\langle #1, #2 \rangle}
+\newcommand{\power}{\mathscr{P}}
+
+\name{Collin Johnston}
+\class{Math 135}
+\assignment{Homework \#4}
+\duedate{09/17/2014}
+
+\begin{document}
+
+\problemlist{32, 41, 43, 44, 45, 3, 6 }
+
+\begin{problem}[3.32]
+  \begin{enumerate}
+    \item Show that $R$ is symmetric iff $R^{-1} \subseteq R$.
+    \item Show that $R$ is transitive iff $R \circ R \subseteq R$.
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item $(\Rightarrow)$ If $R$ is symmetric then: $xRy \implies yRx$. This means that $\langle x,y\rangle \in R$ and $\langle y,x\rangle \in R$, so if $\langle x,y\rangle \in R^{-1}$, then $\langle y,x\rangle \in R$ and $\langle x,y\rangle \in R$. \\
+      $(\Leftarrow)$ If $R^{-1} \subseteq R$, then if $\langle x,y\rangle \in R^{-1}$ then $\langle x,y\rangle \in R$. Additionally, because $R^{-1^{-1}} = R$, $\langle y,x\rangle \in R$, so $xRy$ and $yRx$ meaning $R$ is symmetric.
+    \item $(\Rightarrow)$ If $R$ is transitive then $\forall x,y,z (xRy \:\&\:yRz \Rightarrow xRz)$ so, if $\langle x,z\rangle \in R\circ R$ then $\exists y (\langle x,y\rangle \in R \:\&\: \langle y,z\rangle \in R)$, or $xRy\:\&\: yRz$. By definition of transitivity, we have $xRz$, or $\langle x,z\rangle \in R$. \\
+    $(\Leftarrow)$ If $R\circ R \subseteq R$ then $(t \in R\circ R) \Rightarrow (t \in R)$. Take $\langle x,y\rangle \:\&\: \langle y,z\rangle \in R$. Then $\langle x,z\rangle \in R\circ R$ by composition which means $\langle x,z\rangle \in R$ which means $xRy \:\&\: yRz \Rightarrow xRz$.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}[3.41]
+  Let $\mathbb{R}$ be the set of real numbers and define the relation $Q$ on $\mathbb{R} \times \mathbb{R}$ by $\langle u,v \rangle Q \langle x,y \rangle$ iff $u + y = x + v$.
+  \begin{enumerate}
+    \item Show that $Q$ is an equivalence relation on $\mathbb{R} \times \mathbb{R}$.
+    \item Is there a function $G: \mathbb{R} \times \mathbb{R}/Q \to \mathbb{R} \times \mathbb{R}/Q$ satisfying the equation
+      \begin{align*}
+        G([\langle x,y\rangle]_{\texttiny{Q}})=[\langle x+2y, y+2x\rangle]_{\texttiny{Q}}\text{?}
+      \end{align*}
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item We must show three things: 
+      \begin{enumerate}
+        \item Reflexive: $\langle u,v\rangle Q\langle u,v\rangle$. This is true if and only if $u+v=u+v$ which is true.
+        \item Symmetric: $\langle u,v\rangle Q\langle x,y\rangle \Rightarrow \langle x,y\rangle Q\langle u,v\rangle$. From the left side we have that $u+y=x+v$ which means that $x+v=u+y$ or $\langle x,y\rangle Q\langle u,v\rangle$.
+        \item Transitive: Assume $\langle u,v\rangle Q\langle x,y\rangle$ and $\langle x,y\rangle Q\langle n,m\rangle$. Then $u+y=x+v$ and $x+m=n+y$. Therefore we have that $u+m=n+v$ or: $\langle u,v \rangle Q\langle n,m\rangle$ which affirms transitivity.
+      \end{enumerate}
+    \item By Theorem 3Q in the book, this function exists if and only if the function $F:\pair{x}{y} \mapsto \pair{x+2y}{y+2x}$ respects relation $Q$. If $\pair{u}{v}Q\pair{x}{y}$ then:
+      \begin{align*}
+        &u+y=x+v \\
+        \iff &2u+v+2y+x=2x+y+u+2v \\
+        \iff &(u+2v)+(y+2x)=(x+2y)+(v+2u)\\
+        \iff &F(\pair{u}{v})QF(\pair{x}{y})
+      \end{align*}
+      Therefore F respects Q so G exists.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}[3.43]
+  Assume that $R$ is a linear ordering on a set $A$. Show that $R^{-1}$ is also a linear ordering on A.
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item Transitive: If $xRy$ and $yRz$ then $xRz$. By the definition of the inverse we have that $zR^{-1}y$ and $yR^{-1}x$ and because $xRz$, we have that $zR^{-1}x$ so it is transitive.
+    \item Trichotomy: $\forall x,y\in A (\text{either } xRy, x=y, yRx)$. Given this, it follows that either $yR^{-1}x$, x=y, or $xR^{-1}y$. Therefore $R^{-1}$ satisfies the trichotomy as well.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}[3.44]
+  Assumer that $<$ is a linear ordering on a set $A$. Assume that $f:A\to A$ and that $f$ has the property that whenever $x<y$, then $f(x) < f(y)$. Show that $f$ is one-to-one and that whenever $f(x) < f(y)$, then $x < y$.
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item One-to-one: Assume that $f(x)=f(y)$. Then we have that $f(x)\not < f(y)$ and $f(y)\not < f(x)$ which means that neither $x<y$ or $y<x$. Because of the trichotomy of linear orderings we have that $x=y$ so $f$ is one-to-one. 
+    \item If we have that $f(x) < f(y)$ then either $x<y$, which is what we want. $x=y$ which is impossible becuase then $f(x)=f(y)$ which contradicts the hypothesis. Finally we could have that $y<x$ but this would imply that $f(y)<f(x)$ which also contradicts the hypothesis.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}[3.45]
+  Assume that $<_{\texttiny{a}}$ and $<_{\texttiny{b}}$ are linear ordering on $A$ and $B$ respectively. Define the binary relation $<_{\texttiny{l}}$ on the Cartesian product $A \times B$ by:
+  \[
+    \langle a_1, b_1 \rangle <_\texttiny{l} \langle a_2, b_2 \rangle  \text{iff either } a_1 <_\texttiny{a} a_2 \text{ or } (a_1 = a_2 \text{ \& } b_1 <_\texttiny{b} b_2)
+  \]
+  Show that $<_{\texttiny{l}}$ is a linear ordering on $A\times B$.
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item Transitive: Assume that $\pair{a_1}{b_1} <_\texttiny{l} \pair{a_2}{b_2}$ and $\pair{a_2}{b_2} <_\texttiny{l} \pair{a_3}{b_3}$. Then if $a_1=a_2 \:\&\: a_2<_\texttiny{a}a_3$ or $a_1<_\texttiny{a}a_2 \:\&\: a_2=a_3$. In any of these, we have that $a_1<_\texttiny{a}a_3$ which confirms transitivity. By the assumptions the only other option for the $a$ variables is that $a_1=a_2=a_3$. If this is the case then we have that $b_1<_\texttiny{b}b_2<_\texttiny{b}b_3$ in which case $b_1<_\texttiny{b}b_3$ which also confirms transitivity.
+    \item Trichotomy: If $t = \pair{a_1}{b_1}\:\&\:u = \pair{a_2}{b_2}\in A\times B$ then we have trichotomy of the $a$'s under $<_\texttiny{a}$. If $a_1<_\texttiny{a}a_2$ then $t<_\texttiny{l}u$. If $a_2<_\texttiny{a}a_1$ then $u<_\texttiny{l}t$. If $a_1=a_2$ then we have the trichotomy of the $b$'s under $<_\texttiny{b}$. In this case if $b_1<_\texttiny{b}b_2$ then $t<_\texttiny{l}u$. If $b_2<_\texttiny{b}b_1$ then $u<_\texttiny{l}t$. Finally if $b_1=b_2$ then $t=u$. And out trichotomy of $<_\texttiny{l}$ is complete.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}[4.3]
+  \begin{enumerate}
+    \item Show that if $a$ is a transitive set, then $\mathscr{P}a$ is also a transitive set.
+    \item Show that if $\mathscr{P}a$ is a transitive set, then $a$ is also a transitive set.
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item If $a$ is a transitive set then $x\in t\in a \Rightarrow x\in a$. Suppose we have a $y\in u\in \mathscr{P}a$. Then $y\in u\subseteq a$. Since $u \subseteq a$, $y\in a$. Becuase $a$ is transitive, it follows that $y\subseteq a$ which implies that $y\in \mathscr{P}a$. Hence, $\mathscr{P}a$ is transitive.
+    \item If $\power a$ is transitive then $x\in t\in \power a \Rightarrow x\in\power a$. Since $t\in\power a$, $t\subseteq a$ so $x$ is in $a$. But since $x$ is also in $\power a$, it follows that $a$ is transitive. ($x\in a \Rightarrow x\subseteq a$).
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}[4.6]
+  Prove that converse to Theorem 4E: If $\bigcup(a^+)=a$, then $a$ is a transitive set.
+\end{problem}
+\begin{solution}
+  $\bigcup(a^+) = \bigcup(a\cup \{a\}) = \bigcup a \cup \bigcup \{a\} = \bigcup a \cup a = a$. By the definition of binary union, If $x\in\bigcup a$ then $x\in \bigcup a\cup a = a$ so $x\in a$ which implies $\bigcup a \subseteq a$ so $a$ is transitive.
+\end{solution}
+\end{document}
